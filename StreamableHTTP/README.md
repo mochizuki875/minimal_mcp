@@ -1,4 +1,4 @@
-# MCP HTTP SSE Transport
+# MCP Streamable HTTP Transport
 ## 概要
 - MCPサーバーを起動
 - MCPサーバーのURLを指定してMCPクライアントを起動
@@ -9,7 +9,7 @@
 - `FastMCP`で`hello`というMCPサーバーを起動する
   - MCPサーバーには`hello_world`および`goodbye`というツールが含まれている(`@mcp.tool()`というデコレーターを設定)
     - ツールの機能はメッセージを生成して返すだけのシンプルなもの
-- `HTTP SSE`を使用するために、起動時の`run()`メソッドの引数に`sse`を指定
+- `Streamable HTTP`を使用するために、起動時の`run()`メソッドの引数に`sse`を指定
 
 ### MCPクライアント
 - MCPクライアントを起動する

@@ -19,6 +19,6 @@ if __name__ == "__main__":
     mcp.settings.host = "0.0.0.0"
     mcp.settings.port = 8080
     
-    # 通信にHTTP+SSEを使用する
+    # 通信にStreamableHTTPを使用する
     # uvicornでMCPサーバーが実行される
     mcp.run(transport="sse")
