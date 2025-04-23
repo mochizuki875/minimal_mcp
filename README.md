@@ -7,5 +7,5 @@
 それぞれの[Transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports)を使ってMCPサーバーとMCPクライアントを実装。
 
 - [stdio](./stdio)
-- [Streamable HTTP](./StreamableHTTP)
+- [SSE](./SSE)
 

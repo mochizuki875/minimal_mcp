@@ -1,4 +1,8 @@
-# MCP Streamable HTTP Transport
+#  HTTP+SSE transport(SSE)
+2025/04/23時点でMCPでは[HTTP+SSE transport](https://modelcontextprotocol.io/specification/2024-11-05/basic/transports#http-with-sse)ではなく[Streamable HTTP Transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http)を使用することになっている。
+しかし`python-sdk`のv1.6.0ではSSEしかサポートされておらず、[issue](https://github.com/modelcontextprotocol/python-sdk/issues/405)が上がっている状態。  
+因みに[typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk?tab=readme-ov-file#streamable-http)では既にStreamable HTTP Transportがサポートされている。
+
 ## 概要
 - MCPサーバーを起動
 - MCPサーバーのURLを指定してMCPクライアントを起動
@@ -9,7 +13,7 @@
 - `FastMCP`で`hello`というMCPサーバーを起動する
   - MCPサーバーには`hello_world`および`goodbye`というツールが含まれている(`@mcp.tool()`というデコレーターを設定)
     - ツールの機能はメッセージを生成して返すだけのシンプルなもの
-- `Streamable HTTP`を使用するために、起動時の`run()`メソッドの引数に`sse`を指定
+- `SSE`を使用するために、起動時の`run()`メソッドの引数に`sse`を指定
 
 ### MCPクライアント
 - MCPクライアントを起動する
@@ -46,9 +50,11 @@ tools: meta=None nextCursor=None tools=[Tool(name='hello_world', description='Sa
 Tool result: [TextContent(type='text', text='Hello, MCP!', annotations=None)]
 ```
 
-## (補足) stdioを使用したMCPクライアントとMCPサーバーの通信イメージ
+## (補足) SSEを使用したMCPクライアントとMCPサーバーの通信イメージ
 
-![](../img/img2.png)
+![](../img/sse.png)
+
+- HTTP+SSE transport(https://modelcontextprotocol.io/specification/2024-11-05/basic/transports#http-with-sse)
 
 `/sse`というエンドポイントにGETリクエストを送信するとセッションが確立される
 セッション確立後にツール一覧取得(`tools/list`)やツール実行(`tools/call`)を行う
