@@ -1,6 +1,6 @@
 #  HTTP+SSE transport(SSE)
 2025/04/23時点でMCPでは[HTTP+SSE transport](https://modelcontextprotocol.io/specification/2024-11-05/basic/transports#http-with-sse)ではなく[Streamable HTTP Transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http)を使用することになっている。
-しかし`python-sdk`のv1.6.0ではSSEしかサポートされておらず、[issue](https://github.com/modelcontextprotocol/python-sdk/issues/405)が上がっている状態。  
+しかし`python-sdk`のv1.6.0ではSSEしかサポートされておらず、[issue](https://github.com/modelcontextprotocol/python-sdk/issues/443)が上がっている状態。  
 因みに[typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk?tab=readme-ov-file#streamable-http)では既にStreamable HTTP Transportがサポートされている。
 
 ## 概要
