@@ -1,18 +1,14 @@
 import asyncio
 from mcp.client.stdio import stdio_client, StdioServerParameters
 from mcp import ClientSession
-
+import subprocess
 async def main():
     # MCPサーバをサブプロセスとして起動(MCPサーバーを起動するコードを実行)
     # StdioServerParametersクラスのコンストラクタによりStdioServerParametersオブジェクトを取得
-    server_params = StdioServerParameters(command="python", args=["./mini_server.py"])
+    server_params = StdioServerParameters(command="docker", args=["run", "--name", "mini_mcp_server", "--rm", "-i", "ghcr.io/mochizuki875/mini_mcp_server:latest"])
 
     # MCPクライアントを起動
     async with stdio_client(server_params) as (read_stream, write_stream): # 非同期で受信用Stream(stdout)と送信用Stream(stdin)を取得
-
-        # Enter入力待ち
-        print("MCP Server Started(Press Enter to continue)")
-        input()
 
         async with ClientSession(read_stream, write_stream) as session: # 非同期でStreamからセッションを作成
             await session.initialize()  # セッションの初期化を待機(awaitは非同期処理の完了を待機)
@@ -25,6 +21,9 @@ async def main():
             # Enter入力待ち
             print("All done(Press Enter to exit)")
             input()
+
+            # MCPサーバーを修了(もっと良いやり方あるはず...)
+            subprocess.run(["docker", "rm", "-f", "mini_mcp_server"])
 
 if __name__ == "__main__":
     asyncio.run(main())

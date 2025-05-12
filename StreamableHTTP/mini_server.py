@@ -1,7 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 
 # helloというMCPサーバーを起動
-mcp = FastMCP("hello")
+mcp = FastMCP("hello", stateless_http=True)
 
 # hello_worldというツールを定義
 @mcp.tool(name="hello_world", description="Say hello to someone")
@@ -18,7 +18,9 @@ if __name__ == "__main__":
     # MCPサーバーのホストとポートを設定
     mcp.settings.host = "0.0.0.0"
     mcp.settings.port = 8080
+    mcp.settings.debug = True
+    mcp.settings.log_level = "DEBUG"
     
-    # 通信にSSEを使用する
+    # 通信にStreamableHTTPを使用する
     # uvicornでMCPサーバーが実行される
-    mcp.run(transport="sse")
+    mcp.run(transport="streamable-http")

@@ -1,0 +1,6 @@
+FROM python:3.12.9
+
+COPY ./mini_server.py ./mini_server.py
+RUN pip install mcp==1.6.0
+
+ENTRYPOINT [ "python", "./mini_server.py" ]
